@@ -9,20 +9,21 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { addCity, editCity, deleteCity} from "../helpers/index";
+import store from "../store/index";
 // eslint-disable-next-line no-unused-vars
-const callAction = (type) => {
+
+const callAction = (type, id) => {
   switch (type) {
     case "add":
-      addCity();
+      store.dispatch("addCity", id);
       break;
 
     case "edit":
-      editCity();
+      store.dispatch("editCity", id);
       break;
 
     case "delete":
-      deleteCity();
+      store.dispatch("deleteCity", id);
       break;
 
     default:
@@ -42,6 +43,7 @@ export default {
     cities: {
       immediate: false,
       async handler() {
+        console.log(this.cities);
         await this.removeTable();
         await this.creteTable();
       },
@@ -61,7 +63,7 @@ export default {
       console.log("test1");
     },
     removeTable() {
-      var element = document.getElementsByTagName("table"),
+      let element = document.getElementsByTagName("table"),
         index;
 
       for (index = element.length - 1; index >= 0; index--) {

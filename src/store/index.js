@@ -56,7 +56,7 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_CITY(state, payload) {
-      state.cities = payload;
+      state.cities.push(payload);
     },
     // SET_TODOS(state, todos) {
     //   state.todoList = todos;
@@ -64,6 +64,12 @@ export default new Vuex.Store({
   },
   actions: {
     addCity({ commit }, payload) {
+      commit("SET_CITY", { payload });
+    },
+    editCity({ commit }, payload) {
+      commit("SET_CITY", { payload });
+    },
+    deleteCity({ commit }, payload) {
       commit("SET_CITY", { payload });
     },
   },
