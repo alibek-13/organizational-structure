@@ -14,8 +14,8 @@ export default {
   },
 
   computed: {
-    todoList() {
-      return this.$store.state.todoList;
+    cities() {
+      return this.$store.state.cities;
     },
   },
 };

@@ -17,7 +17,7 @@ const routes = [
     component: AddTodo,
     meta: {
       requireAuth: true,
-    }
+    },
   },
   {
     path: "/TodoDetailsPage/:id",
@@ -25,7 +25,7 @@ const routes = [
     component: () => import("@/views/TodoDetalis.vue"),
     meta: {
       layout: "Todo-Detalis",
-    }
+    },
   },
   {
     path: "*",

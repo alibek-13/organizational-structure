@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "AddTodo",
   data() {
@@ -42,6 +44,15 @@ export default {
       joint: "",
       actual: "",
     };
+  },
+  computed: {
+    ...mapGetters([
+      "cities",
+      // ...
+    ]),
+  },
+  mounted() {
+    console.log(this.cities);
   },
   methods: {
     addTodo() {

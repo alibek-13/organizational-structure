@@ -20,7 +20,6 @@ export default {
     todo: {
       type: Object,
       required: true,
-      
       default: () => ({}),
     },
   },
@@ -28,7 +27,7 @@ export default {
     open() {
       this.$router.push({
         name: "TodoDetailsPage",
-        params: { id: this.todo.created_at }
+        params: { id: this.todo.created_at },
       });
     },
   },

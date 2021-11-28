@@ -38,29 +38,24 @@
         </div>
       </div>
     </transition>
-    <button class="submit" @click="AddCityModal">
-      + добавить
-    </button>
+    <button class="submit" @click="AddCityModal">+ добавить</button>
     <div class="content">
       <div class="main header">Город</div>
       <div class="total header">Общие количество</div>
       <div class="amount header">Фактическое количество</div>
       <div class="action header">Действие</div>
     </div>
-    <div v-if="todoList.length" class="todos">
-      <Todo v-for="todo in todoList" :key="todo.created_at" :todo="todo" />
-    </div>
+    <city-list />
+    <div class="todos"></div>
   </div>
 </template>
 
 <script>
-import Todo from "../components/Todo.vue";
-
+import CityList from "../components/CityList.vue";
 export default {
   name: "Home",
   components: {
-    Todo,
-
+    CityList,
   },
   data() {
     return {
@@ -71,9 +66,6 @@ export default {
     };
   },
   methods: {
-    AddCity() {
-      this.$router.push({ name: "AddTodo" });
-    },
     AddCityModal() {
       this.Modal = true;
     },
@@ -86,23 +78,25 @@ export default {
       };
     },
     addTodo() {
-      if (!this.title || !this.joint || !this.actual) return;
-      // Поставить валидацию для времени
-      this.$store.commit("ADD_TODO", {
-        title: this.title,
-        joint: this.joint,
-        actual: this.actual,
-        created_at: Date.now(),
-      });
-      this.toHomePage();
+      try {
+        if (!this.title || !this.joint || !this.actual) return;
+        // Поставить валидацию для времени
+        const payload = {
+          title: this.title,
+          joint: this.joint,
+          actual: this.actual,
+          created_at: Date.now(),
+          id: this.$uuid.v1(),
+          child: [],
+        };
+        this.$store.dispatch("addCity", payload);
+        this.toHomePage();
+      } catch (ex) {
+        console.error(ex);
+      }
     },
     toHomePage() {
       this.$router.push({ name: "Home" });
-    },
-  },
-  computed: {
-    todoList() {
-      return this.$store.state.todoList;
     },
   },
 };

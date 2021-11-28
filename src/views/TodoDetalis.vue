@@ -5,8 +5,8 @@
     </div>
     <h2>Details Todo</h2>
     <h3>{{ todo.title }}</h3>
-    <p>{{ this.joint }}</p>
-    <p>{{ this.actual }}</p>
+    <p>{{ todo.joint }}</p>
+    <p>{{ todo.actual }}</p>
   </section>
 </template>
 
@@ -17,8 +17,8 @@ export default {
     todo: {},
   }),
   computed: {
-    todoList() {
-      return this.$store.state.todoList;
+    cities() {
+      return this.$store.state.cities;
     },
   },
   methods: {
@@ -29,5 +29,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

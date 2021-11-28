@@ -4,17 +4,70 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-
   state: {
-    todoList: []
+    cities: [
+      {
+        title: "Aktau",
+        joint: 12,
+        actual: 12,
+        child: [
+          {
+            title: "Aktau1",
+            joint: 12,
+            actual: 12,
+            child: [
+              {
+                title: "Aktau2",
+                joint: 12,
+                actual: 12,
+                child: [
+                  {
+                    title: "Aktau3",
+                    joint: 12,
+                    actual: 12,
+                    child: [
+                      {
+                        title: "Aktau4",
+                        joint: 12,
+                        actual: 12,
+                        child: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                title: "Aktobe",
+                joint: 12,
+                actual: 12,
+                child: [],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Oskemen",
+        joint: 12,
+        actual: 112,
+        child: [],
+      },
+    ],
   },
   mutations: {
-    ADD_TODO(state, todo) {
-      state.todoList.push(todo);
+    SET_CITY(state, payload) {
+      state.cities = payload;
     },
     // SET_TODOS(state, todos) {
     //   state.todoList = todos;
     // },
   },
-  actions: {},
+  actions: {
+    addCity({ commit }, payload) {
+      commit("SET_CITY", { payload });
+    },
+  },
+  getters: {
+    cities: (state) => state.cities,
+  },
 });
